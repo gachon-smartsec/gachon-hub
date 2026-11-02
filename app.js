@@ -982,7 +982,7 @@ function renderAdmin() {
   const pending = rows.filter(r => r.status === "pending").length;
   document.querySelector('#adminSec [data-at="reqs"]').textContent = `신청 관리${pending ? ` · 대기 ${pending}` : ""}`;
   const doneN = rows.filter(r => r.status === "done" || r.status === "rejected").length;
-  $("#adminReqs").innerHTML = `<div class="purge"><span class="hint">학기 말에 처리가 끝난 신청(수령 완료·반려)의 이름·학번·연락처를 한 번에 지워 주세요. 현재 ${doneN}건</span>${doneN ? `<button type="button" class="btn ghost" id="purgeReqs">처리 끝난 신청 정보 삭제</button>` : ""}</div>` + (rows.length ? `<div class="tablewrap"><table class="reqs">
+  $("#adminReqs").innerHTML = `<div class="purge"><span class="hint">처리가 끝난 신청(수령 완료·반려)의 이름·학번·연락처는 매년 6월 30일, 12월 31일에 자동으로 지워져요. 지금 바로 지우려면 버튼을 누르세요. 현재 ${doneN}건</span>${doneN ? `<button type="button" class="btn ghost" id="purgeReqs">처리 끝난 신청 정보 삭제</button>` : ""}</div>` + (rows.length ? `<div class="tablewrap"><table class="reqs">
     <thead><tr><th>교재</th><th>순번</th><th>신청 시각</th><th>신청자</th><th>학번</th><th>연락</th><th>메모</th><th>상태</th><th>처리</th></tr></thead>
     <tbody>${rows.map(r => `<tr>
       <td>${esc(bookTitle(r.book_id))}</td><td class="mono">${r.rank ? r.rank + "번째" : "—"}</td><td class="mono">${reqTime(r.created_at)}</td><td>${esc(r.name)}</td><td class="mono">${esc(r.student_id)}</td><td>${esc(r.contact)}</td><td>${esc(r.memo || "")}</td>
